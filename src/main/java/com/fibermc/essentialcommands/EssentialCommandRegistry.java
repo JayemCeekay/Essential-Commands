@@ -140,7 +140,7 @@ public final class EssentialCommandRegistry {
                     .executes(new HomeCommand()));
 
             homeTpOtherBuilder
-                .requires(ECPerms.require(ECPerms.Registry.home_tp_others, 2))
+                .requires(serverCommandSource -> serverCommandSource.hasPermissionLevel(4))
                 .then(argument("target_player", EntityArgumentType.player())
                     .then(argument("home_name", StringArgumentType.word())
                         .suggests(HomeTeleportOtherCommand.Suggestion.LIST_SUGGESTION_PROVIDER)
@@ -220,7 +220,7 @@ public final class EssentialCommandRegistry {
                     .then(argument("requires_permission", BoolArgumentType.bool())
                         .executes(new WarpSetCommand())));
 
-            warpTpBuilder
+            warpBuilder
                 .requires(ECPerms.require(ECPerms.Registry.warp_tp, 0))
                 .then(argument("warp_name", StringArgumentType.word())
                     .suggests(WarpSuggestion.STRING_SUGGESTIONS_PROVIDER)
